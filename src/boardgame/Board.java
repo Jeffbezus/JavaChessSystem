@@ -1,7 +1,5 @@
 package boardgame;
 
-import boardgame.Piece;
-
 public class Board {
     private int rows;
     private int columns;
@@ -14,13 +12,12 @@ public class Board {
 
     }
     
-
-    public Piece piece(int row, int columns){
-        return null;
+    public Piece piece(int row, int column){
+        return pieces[row][column];
     }
     
     public Piece piece(Position position){
-        return null;
+        return pieces[position.getRow()][position.getColunm()];
     }
 
     public void placePiece(Piece piece, Position position){
