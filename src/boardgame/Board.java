@@ -21,7 +21,8 @@ public class Board {
     }
 
     public void placePiece(Piece piece, Position position){
-        
+        pieces[position.getRow()][position.getColunm()] = piece;
+
     }
 
     public Piece removePiece(Position position){
