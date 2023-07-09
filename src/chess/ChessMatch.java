@@ -8,11 +8,32 @@ import chess.pieces.Rook;
 
 public class ChessMatch {
     private Board board;
+    private Color currentPlayer;
+	private int turn;
+    private boolean check;
+    private boolean checkMate;
 
     public ChessMatch(){
         board = new Board(8, 8);
         initialSetup();
     }
+
+    public Color getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+    public boolean getCheck() {
+		return check;
+	}
+
+    public boolean getCheckMate() {
+		return checkMate;
+	}
+
+    public int getTurn() {
+            return turn;
+    }
+        
     public ChessPiece[][] getPieces(){
         ChessPiece[][] matriz = new ChessPiece[board.getRows()][board.getColumns()];
         for (int i = 0; i < board.getRows(); i++){
@@ -22,6 +43,12 @@ public class ChessMatch {
         }
         return matriz;
     } 
+
+    public boolean[][] possibleMoves(ChessPosition sourcePosition){
+        Position position = sourcePosition.toPosition();
+        validadeSourcePosition(position);
+        return board.piece(position).possibleMoves();
+    }
 
     public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition){
         Position source = sourcePosition.toPosition();
@@ -42,7 +69,7 @@ public class ChessMatch {
         if(!board.thereIsAPiece(position)){
             throw new chessException("There is no piece on source position!");
         }
-        if(board.piece(position).isThereAnyPossibleMove()){
+        if(!board.piece(position).isThereAnyPossibleMove()){
             throw new chessException("There is no possible moves for the chosen piece!");
 
         }
