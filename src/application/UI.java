@@ -53,7 +53,7 @@ public class UI {
         }else{
             System.out.println("CHECKMATE!");
             System.out.println("WINNER: " + chessMatch.getCurrentPlayer());
-        }
+        } 
     }
 
     public static ChessPosition readChessPosition(Scanner sc){
